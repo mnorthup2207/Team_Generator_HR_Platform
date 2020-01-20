@@ -9,36 +9,125 @@ const fs = require("fs");
 const outputPath = path.resolve(__dirname, "output", "team.html");
 
 const render = require("./lib/htmlRenderer");
+// first function kicking off first question
+async function start() {
+    let team = "";
+    let name;
+    let id;
+    let title;
+    let email;
+    //first question
+    await inquirer.prompt([
+        {
+            type: "list",
+            message: "Which member of staff would you like to add?",
+            choices: ["Manager", "Engineer", "Intern"],
+            name: "title"
+        },
+        {
+            type: "input",
+            message: `Please enter the new employee's name.`,
+            name: "name"
+        },
+        {
+            type: "input",
+            message: `Please enter the new employee's I.D. Number.`,
+            name: "id"
+        },
+        {
+            type: "input",
+            message: `Please enter the new employee's email`,
+            name: "email"
+        },
+    ]).then(response => {
+        title = response.title;
+        name = response.name;
+        id = response.id;
+        email = response.email;
+    })
 
-const output = []
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-const start = [
-    {
-        type: "input",
-        message: "Which member of staff would you like to add?",
-        choices: ["Manager", "Engineer", "Intern"],
-        name: "title"
+    switch (title) {
+        case "Manager":
+            await inquirer.prompt([
+                {
+                    type: "input",
+                    message: "Please enter the new Manager's office room number.",
+                    name: "officeRoomNum"
+                },
+                {
+                    type: "list",
+                    message: "Do you want to enter an additional team member?",
+                    choices: ["Yes, add another member", "No, that's everyone"],
+                    name: "addTeamMember"
+                }
+            ]).then(response => {
+                const manager = new Manager(name, id, email, response.officeRoomNum);
+                associate = fs.readFileSync("templates/manager.html");
+                team = team + "\n" + eval('`' + associate + '`');
+                if (response.addTeamMember === "Yes, add another member") {
+                    start()
+                } else {
+                    console.log("Your team info has been successfully recorded");
+
+                }
+            });
+            break;
+        case "Intern":
+            await inquirer.prompt([
+                {
+                    type: "input",
+                    message: "Please enter the new Intern's school name.",
+                    name: "school"
+                },
+                {
+                    type: "confirm",
+                    message: "Do you want to enter an additional team member?",
+                    name: "addTeamMember"
+                }
+            ]).then(response => {
+                const intern = new Intern(name, id, email, response.school);
+                associate = fs.readFileSync("templates/intern.html");
+                team = team + "\n" + eval('`' + associate + '`');
+                if (response.addTeamMember === "Yes, add another member") {
+                    start()
+                } else {
+                    console.log("Your team info has been successfully recorded");
+
+                }
+            });
+            break;
+        case "Engineer":
+            await inquirer.prompt([
+                {
+                    type: "input",
+                    message: "Please enter the new Engineer's GutHub Account.",
+                    name: "github"
+                },
+                {
+                    type: "confirm",
+                    message: "Do you want to enter an additional team member?",
+                    name: "addTeamMember"
+                }
+            ]).then(response => {
+                const engineer = new Engineer(name, id, email, response.github);
+                associate = fs.readFileSync("templates/engineer.html");
+                team = team + "\n" + eval('`' + associate + '`');
+                if (response.addTeamMember === "Yes, add another member") {
+                    start()
+                } else {
+                    console.log("Your team info has been successfully recorded");
+
+                }
+            });
+            break;
     }
 
-];
 
-function ask() {
-    inquirer.prompt(questions).then(answers => {
-        console.log(answers)
-        output.push(answers);
-        if (answers.continue) {
-            ask();
-            output.push(answers)
-        } else {
-            console.log(answers);
-        }
-    });
 }
+start()
 
-ask();
 
-module.exports = output;
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
