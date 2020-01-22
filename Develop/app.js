@@ -71,8 +71,6 @@ function managerFunc() {
         if (response.addTeamMember === "Yes, add another member") {
             start()
         } else {
-            console.log(team);
-            console.log("Your team info has been successfully recorded");
             createFile()
         };
     });
@@ -96,8 +94,6 @@ function internFunc() {
         if (response.addTeamMember === "Yes, add another member") {
             start()
         } else {
-            console.log(team);
-            console.log("Your team info has been successfully recorded");
             createFile()
         };
     });
@@ -106,7 +102,7 @@ function engineerFunc() {
     inquirer.prompt([
         {
             type: "input",
-            message: "Please enter the new Engineer's GutHub Account.",
+            message: "Please enter the new Engineer's GitHub Account.",
             name: "github"
         },
         {
@@ -121,14 +117,14 @@ function engineerFunc() {
         if (response.addTeamMember === "Yes, add another member") {
             start()
         } else {
-            console.log(team);
-            console.log("Your team info has been successfully recorded");
             createFile()
         };
     });
 };
 function createFile() {
     fs.writeFileSync(outputPath, render(team), "utf-8");
+    console.log(`Team successfully added to team.html in Output Folder`);
+
 }
 start()
 
