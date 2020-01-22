@@ -73,7 +73,7 @@ function managerFunc() {
         } else {
             console.log(team);
             console.log("Your team info has been successfully recorded");
-
+            createFile()
         };
     });
 };
@@ -98,7 +98,7 @@ function internFunc() {
         } else {
             console.log(team);
             console.log("Your team info has been successfully recorded");
-
+            createFile()
         };
     });
 };
@@ -123,12 +123,12 @@ function engineerFunc() {
         } else {
             console.log(team);
             console.log("Your team info has been successfully recorded");
-
+            createFile()
         };
     });
 };
-function name(params) {
-    
+function createFile() {
+    fs.writeFileSync(outputPath, render(team), "utf-8");
 }
 start()
 
