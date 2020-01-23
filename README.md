@@ -1,21 +1,14 @@
 # Team Generator HR Platform
 
 ## Function 
-- A command-line application that dynamically generates a PDF profile from a GitHub username. The application can be invoked with the following command:
+- A command-line application that dynamically generates a HTML file that is compiled of all team members generated from the CLI.
 
-- node index.js
+- node app.js
 
-![image](assets/image/command_line.png)
-
-- The user is then prompted for their GitHub username and favorite color
-
-![Demo](assets/image/selections.png)
- 
-- A PDF is then generated with the users name, bio, location, blog, followers, following, stars, and repo amount.
-- The user will need to use the package.json to "npm install" all dependencies for this application.
+![image](img/CLI.png)
 
 ## Intended Use
-- This application is created with the project or hiring manager in mind. Instead of simply having users GitHub profile links, the user can have dynamically created content that is clean and deliverable in a PDF form.
+- This application is created with Human Resources or the hiring manager in mind. Quickly and efficiently a manager or director can build an HTML file with pertinent employee information, located in one location. 
 
 ## List of links/dependencies
 
@@ -23,12 +16,8 @@ inquirer-npm
 - https://www.npmjs.com/package/inquirer/v/0.2.3
 fs-js
 - https://www.npmjs.com/package/fs-js
-axios
-- https://www.npmjs.com/package/axios
-util
-- https://www.npmjs.com/package/util
-html-pdf
-- https://www.npmjs.com/package/html-pdf
+path
+- https://www.npmjs.com/package/path
 
 ## Credits
 Used font awesome for the save icon.
