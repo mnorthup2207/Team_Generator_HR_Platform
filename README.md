@@ -12,11 +12,11 @@
 
 ## List of links/dependencies
 
-inquirer-npm 
+-   inquirer-npm 
 - https://www.npmjs.com/package/inquirer/v/0.2.3
-fs-js
+-   fs-js
 - https://www.npmjs.com/package/fs-js
-path
+-   path
 - https://www.npmjs.com/package/path
 
 ## Credits
